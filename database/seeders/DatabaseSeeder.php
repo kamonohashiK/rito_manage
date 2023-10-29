@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UsersTableSeeder::class,
+            // テスト用ユーザー作成
+            //UsersTableSeeder::class,
         ]);
     }
 }
