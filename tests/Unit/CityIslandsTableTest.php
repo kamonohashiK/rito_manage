@@ -15,14 +15,14 @@ class CityIslandsTableTest extends TestCase
      */
     public function test_exists_city_islands_table(): void
     {
-        /**
-         * テーブルが存在するか
-         */
         $this->assertTrue(Schema::hasTable('city_islands'));
+    }
 
-        /**
-         * 必要なカラムが存在するか
-         */
+    /**
+    * 必要なカラムが存在するか
+    */
+    public function test_has_columns(): void
+    {
         $this->assertTrue(Schema::hasColumns('city_islands', [
             'id',
             'city_id',

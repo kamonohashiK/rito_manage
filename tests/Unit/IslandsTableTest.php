@@ -15,14 +15,14 @@ class IslandsTableTest extends TestCase
      */
     public function test_islands_table_exists(): void
     {
-        /**
-         * テーブルが存在するか
-         */
         $this->assertTrue(Schema::hasTable('islands'));
+    }
 
-        /**
-         * 必要なカラムが存在するか
-         */
+    /**
+    * 必要なカラムが存在するか
+    */
+    public function test_has_columns(): void
+    {
         $this->assertTrue(Schema::hasColumns('islands', [
             'id',
             'firestore_id',

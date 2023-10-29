@@ -15,14 +15,14 @@ class CitiesTableTest extends TestCase
      */
     public function test_exists_cities_table(): void
     {
-        /**
-         * テーブルが存在するか
-         */
         $this->assertTrue(Schema::hasTable('cities'));
+    }
 
-        /**
-         * 必要なカラムが存在するか
-         */
+    /**
+    * 必要なカラムが存在するか
+    */
+    public function test_has_columns(): void
+    {
         $this->assertTrue(Schema::hasColumns('cities', [
             'id',
             'prefecture_id',
@@ -32,10 +32,13 @@ class CitiesTableTest extends TestCase
             'created_at',
             'updated_at',
         ]));
+    }
 
-        /**
-         * prefecture_idはprefecturesテーブルのidを参照しているか
-         */
+    /**
+    * prefecture_idはprefecturesテーブルのidを参照しているか
+    */
+    public function test_prefecture_id_foreign(): void
+    {
         $this->assertTrue(Schema::enableForeignKeyConstraints('prefecture_id'));
     }
 }
