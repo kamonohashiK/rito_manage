@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('islands', function (Blueprint $table) {
             $table->id();
-            $table->string('firestore_id')->comment('Firestoreで使用するID');
-            $table->string('name')->comment('島の名前');
-            $table->string('kana')->comment('島の名前のふりがな');
-            $table->string('en_name')->comment('島の名前の英語表記');
+            $table->string('firestore_id', 40)->comment('Firestoreで使用するID');
+            $table->string('name', 20)->comment('島の名前');
+            $table->string('kana', 40)->comment('島の名前のふりがな');
+            $table->string('en_name', 40)->comment('島の名前の英語表記');
             $table->decimal('lat', 8, 6)->comment('島の緯度');
             $table->decimal('lng', 9, 6)->comment('島の経度');
             $table->timestamps();

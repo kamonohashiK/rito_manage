@@ -13,7 +13,7 @@ class IslandsTableTest extends TestCase
     /**
      * islandsテーブルが存在するかどうか
      */
-    public function test_islandsテーブルが作成される(): void
+    public function test_islands_table_exists(): void
     {
         /**
          * テーブルが存在するか
