@@ -6,16 +6,16 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class IslandsTableTest extends TestCase
+class PrefecturesTableTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
-     * islandsテーブルが存在するかどうか
+     * prefecturesテーブルが存在するかどうか
      */
-    public function test_islands_table_exists(): void
+    public function test_exists_prefectures_table(): void
     {
-        $this->assertTrue(Schema::hasTable('islands'));
+        $this->assertTrue(Schema::hasTable('prefectures'));
     }
 
     /**
@@ -23,14 +23,11 @@ class IslandsTableTest extends TestCase
     */
     public function test_has_necessary_columns(): void
     {
-        $this->assertTrue(Schema::hasColumns('islands', [
+        $this->assertTrue(Schema::hasColumns('prefectures', [
             'id',
-            'firestore_id',
             'name',
-            'kana',
             'en_name',
-            'lat',
-            'lng',
+            'code',
             'created_at',
             'updated_at',
         ]));
