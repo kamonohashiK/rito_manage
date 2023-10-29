@@ -19,9 +19,9 @@ class CityIslandsTableTest extends TestCase
     }
 
     /**
-    * 必要なカラムが存在するか
+    * 必要なカラムが存在するかどうか
     */
-    public function test_has_columns(): void
+    public function test_has_necessary_columns(): void
     {
         $this->assertTrue(Schema::hasColumns('city_islands', [
             'id',
@@ -30,5 +30,21 @@ class CityIslandsTableTest extends TestCase
             'created_at',
             'updated_at',
         ]));
+    }
+
+    /**
+    * city_idはcitiesテーブルのidを参照しているか
+    */
+    public function test_city_id_foreign(): void
+    {
+        $this->assertTrue(Schema::enableForeignKeyConstraints('city_id'));
+    }
+
+    /**
+    * island_idはislandsテーブルのidを参照しているか
+    */
+    public function test_island_id_foreign(): void
+    {
+        $this->assertTrue(Schema::enableForeignKeyConstraints('island_id'));
     }
 }

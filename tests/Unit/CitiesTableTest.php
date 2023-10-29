@@ -19,9 +19,9 @@ class CitiesTableTest extends TestCase
     }
 
     /**
-    * 必要なカラムが存在するか
+    * 必要なカラムが存在するかどうか
     */
-    public function test_has_columns(): void
+    public function test_has_necessary_columns(): void
     {
         $this->assertTrue(Schema::hasColumns('cities', [
             'id',

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('prefecture_id')->constrained();
+            $table->foreignId('prefecture_id')->constrained('prefectures');
             $table->string('name', 10)->comment('市区町村名');
             $table->string('en_name', 40)->comment('市区町村名の英語表記');
             $table->string('code', 20)->comment('市区町村コード');
