@@ -20,10 +20,11 @@ class IslandTest extends TestCase
     }
 
     /**
-     * A basic unit test example.
+     * IDからレコードを取得できるかテスト
      */
-    public function test_example(): void
+    public function test_get_record_by_id()
     {
-        $this->assertTrue(true);
+        $island = Island::factory()->create();
+        $this->assertEquals($island->id, Island::getById($island->id)->id);
     }
 }
