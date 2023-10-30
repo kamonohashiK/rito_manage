@@ -19,4 +19,12 @@ class Island extends Model
     {
         return self::where('id', $id)->first();
     }
+
+    /**
+     * 全件取得する
+     */
+    public static function getAll()
+    {
+        return self::all();
+    }
 }

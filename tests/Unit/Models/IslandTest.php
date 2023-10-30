@@ -27,4 +27,12 @@ class IslandTest extends TestCase
         $island = Island::factory()->create();
         $this->assertEquals($island->id, Island::getById($island->id)->id);
     }
+
+    /**
+     * 全件取得できるかテスト
+     */
+    public function test_get_all_records()
+    {
+        $this->assertEquals(100, Island::getAll()->count());
+    }
 }
