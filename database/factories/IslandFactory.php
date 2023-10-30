@@ -16,12 +16,11 @@ class IslandFactory extends Factory
      */
     public function definition(): array
     {
-        //TODO: 場合によってはDBの文字数制限を超える可能性があるので、確実に超えない形に修正する
         return [
             'firestore_id' => $this->faker->unique()->regexify('[a-zA-Z0-9]{40}'),
-            'name' => $this->faker->firstName(),
-            'kana' => $this->faker->firstName(),
-            'en_name' => $this->faker->title(),
+            'name' => $this->faker->firstName($maxNbChars = 10),
+            'kana' => $this->faker->firstName($maxNbChars = 10),
+            'en_name' => $this->faker->title($maxNbChars = 20),
             'lat' => $this->faker->latitude(),
             'lng' => $this->faker->longitude(),
         ];

@@ -22,6 +22,8 @@ class Island extends Model
 
     /**
      * 全件取得する
+     *
+     * @return \Illuminate\Database\Eloquent\Collection<Island>
      */
     public static function getAll()
     {
