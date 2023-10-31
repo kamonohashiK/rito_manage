@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>トップ</p>
+    <?= var_dump($islands) ?>
 @stop
 
 @section('css')
