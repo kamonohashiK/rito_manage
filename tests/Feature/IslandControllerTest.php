@@ -35,7 +35,7 @@ class IslandControllerTest extends TestCase
     }
 
     /**
-     * ログインしていない場合は、ログイン画面にリダイレクトされるかテスト
+     * ログインしていない状態で一覧画面にアクセスした場合は、ログイン画面にリダイレクトされるかテスト
      * @return void
      */
     public function test_index_page_when_not_login(): void
@@ -47,7 +47,7 @@ class IslandControllerTest extends TestCase
     }
 
     /**
-     * ログインしている場合は、島の詳細画面が表示されるかテスト
+     * ログインしている状態でisland/{$id}にアクセスした場合は、島の詳細画面が表示されるかテスト
      * @return void
      */
     public function test_show_page(): void
