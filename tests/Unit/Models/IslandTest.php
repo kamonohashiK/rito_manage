@@ -35,4 +35,6 @@ class IslandTest extends TestCase
     {
         $this->assertEquals(100, Island::getAll()->count());
     }
+
+    // TOOO: citiesのテストを書く
 }
