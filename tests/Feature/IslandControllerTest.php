@@ -11,6 +11,16 @@ class IslandControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $user;
+    protected $islands;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $this->islands = Island::factory(100)->create();
+    }
+
     /**
      * ログインしている場合は、島の一覧画面が表示されるかテスト
      *
@@ -18,9 +28,7 @@ class IslandControllerTest extends TestCase
      */
     public function test_index_page(): void
     {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($this->user)->get('/');
 
         $response->assertStatus(200);
         $response->assertViewIs('island.index');
@@ -47,10 +55,9 @@ class IslandControllerTest extends TestCase
      */
     public function test_show_page(): void
     {
-        $user = User::factory()->create();
-        $island = Island::factory()->create();
+        $island = $this->islands->first();
 
-        $response = $this->actingAs($user)->get("/island/{$island->id}");
+        $response = $this->actingAs($this->user)->get("/island/{$island->id}");
 
         $response->assertStatus(200);
         $response->assertViewIs('island.show');
