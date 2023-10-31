@@ -2,23 +2,37 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 use App\Models\Island;
-use Tests\TestCase;
+use App\Models\Prefecture;
+use App\Models\City;
+use Illuminate\Support\Facades\DB;
 
 class IslandControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     protected $user;
+    protected $prefecture;
+    protected $city;
     protected $islands;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
+        $this->prefecture = Prefecture::factory()->create();
+        $this->city = City::factory()->for($this->prefecture)->create();
         $this->islands = Island::factory(100)->create();
+
+        foreach ($this->islands as $island) {
+            DB::table('city_islands')->insert([
+                'city_id' => $this->city->id,
+                'island_id' => $island->id,
+            ]);
+        }
     }
 
     /**
