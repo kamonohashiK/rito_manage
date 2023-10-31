@@ -22,6 +22,7 @@ class IslandControllerTest extends TestCase
         $response = $this->actingAs($user)->get('/');
 
         $response->assertStatus(200);
+        $response->assertViewIs('island.index');
     }
 
     /**
