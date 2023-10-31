@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+    <?php //TODO: 丸ごとコンポーネントに切り出す
+    ?>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -34,7 +36,8 @@
                         <tbody>
                             <?php foreach ($islands as $island): ?>
                             <tr>
-                                <td><?= $island->name ?></td>
+                                <td><a href="{{ route('islands.show', ['id' => $island->id]) }}">{{ $island->name }}</a>
+                                </td>
                                 <td>John Doe</td>
                                 <td>11-7-2014</td>
                             </tr>
@@ -45,16 +48,4 @@
             </div>
         </div>
     </div>
-@stop
-
-@section('css')
-    {{-- ページごとCSSの指定
-    <link rel="stylesheet" href="/css/xxx.css">
-    --}}
-@stop
-
-@section('js')
-    <script>
-        console.log('ページごとJSの記述');
-    </script>
 @stop

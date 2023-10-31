@@ -35,6 +35,7 @@ class IslandIndex extends TestCase
             ->assertSee('<th>島名</th>', false)
             ->assertSee('<th>都道府県名</th>', false)
             ->assertSee('<th>市区町村名</th>', false)
-            ->assertSee("<td>{$this->islands[0]->name}</td>", false);
+            // NOTE: 各島の詳細ページへのリンクがあるかどうかテストしたい
+            ->assertSeeInOrder(["<td>", $this->islands[0]->name, "</td>"], false);
     }
 }
