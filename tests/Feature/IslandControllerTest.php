@@ -23,7 +23,6 @@ class IslandControllerTest extends TestCase
 
     /**
      * ログインしている場合は、島の一覧画面が表示されるかテスト
-     *
      * @return void
      */
     public function test_index_page(): void
@@ -37,7 +36,6 @@ class IslandControllerTest extends TestCase
 
     /**
      * ログインしていない場合は、ログイン画面にリダイレクトされるかテスト
-     *
      * @return void
      */
     public function test_index_page_when_not_login(): void
@@ -50,7 +48,6 @@ class IslandControllerTest extends TestCase
 
     /**
      * ログインしている場合は、島の詳細画面が表示されるかテスト
-     *
      * @return void
      */
     public function test_show_page(): void
@@ -74,5 +71,18 @@ class IslandControllerTest extends TestCase
 
         $response->assertStatus(404);
     }
-    // TODO: 詳細ページでログインしていない場合は、ログイン画面にリダイレクトされるかテスト
+
+    /**
+     * 詳細ページでログインしていない場合は、ログイン画面にリダイレクトされるかテスト
+     * @return void
+     */
+    public function test_show_page_when_not_login(): void
+    {
+        $island = $this->islands->first();
+
+        $response = $this->get("/island/{$island->id}");
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/login');
+    }
 }
