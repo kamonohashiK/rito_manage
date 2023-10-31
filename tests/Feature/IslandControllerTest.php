@@ -64,6 +64,15 @@ class IslandControllerTest extends TestCase
         $response->assertViewHas('island');
     }
 
-    // TODO: 島のデータが存在しない場合は、404エラーが返ってくるかテスト
+    /**
+     * 詳細ページで島のデータが存在しない場合は、404ページを表示するテスト
+     * @return void
+     */
+    public function test_show_404_when_island_not_found(): void
+    {
+        $response = $this->actingAs($this->user)->get("/island/101");
+
+        $response->assertStatus(404);
+    }
     // TODO: 詳細ページでログインしていない場合は、ログイン画面にリダイレクトされるかテスト
 }

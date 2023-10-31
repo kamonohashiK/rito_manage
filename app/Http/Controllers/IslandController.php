@@ -27,6 +27,10 @@ class IslandController extends Controller
     public function show(int $id): \Illuminate\View\View
     {
         $island = Island::find($id);
-        return view('island.show', compact('island'));
+        if ($island !== null) {
+            return view('island.show', compact('island'));
+        } else {
+            abort(404);
+        }
     }
 }
