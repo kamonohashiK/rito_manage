@@ -30,6 +30,11 @@ class IslandIndex extends TestCase
         $response = $this->actingAs($this->user)->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('島一覧');
+        $response
+            ->assertSee('島一覧')
+            ->assertSee('<th>島名</th>', false)
+            ->assertSee('<th>都道府県名</th>', false)
+            ->assertSee('<th>市区町村名</th>', false)
+            ->assertSee("<td>{$this->islands[0]->name}</td>", false);
     }
 }
