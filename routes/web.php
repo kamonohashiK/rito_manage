@@ -22,6 +22,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [IslandController::class, 'index'])->name('islands.index');
+    Route::get('/island/{id}', [IslandController::class, 'show'])->name('islands.show');
     // Breezeで自動作成されたルート
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

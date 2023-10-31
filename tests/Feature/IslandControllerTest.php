@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
+use App\Models\Island;
 use Tests\TestCase;
 
 class IslandControllerTest extends TestCase
@@ -38,4 +39,24 @@ class IslandControllerTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/login');
     }
+
+    /**
+     * ログインしている場合は、島の詳細画面が表示されるかテスト
+     *
+     * @return void
+     */
+    public function test_show_page(): void
+    {
+        $user = User::factory()->create();
+        $island = Island::factory()->create();
+
+        $response = $this->actingAs($user)->get("/island/{$island->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('island.show');
+        $response->assertViewHas('island');
+    }
+
+    // TODO: 島のデータが存在しない場合は、404エラーが返ってくるかテスト
+    // TODO: 詳細ページでログインしていない場合は、ログイン画面にリダイレクトされるかテスト
 }
