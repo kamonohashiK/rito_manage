@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-    //TODO: モデルの単体テストを書く
 
     /**
      * 市区町村が属する都道府県を取得
