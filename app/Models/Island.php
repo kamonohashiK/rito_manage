@@ -29,4 +29,12 @@ class Island extends Model
     {
         return self::all();
     }
+
+    /**
+     * CityIslandを通して、市区町村名を取得する
+     */
+    public function cities()
+    {
+        return $this->belongsToMany(City::class, 'city_islands');
+    }
 }
