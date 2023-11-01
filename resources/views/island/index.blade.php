@@ -38,10 +38,8 @@
                             <tr>
                                 <td><a href="{{ route('islands.show', ['id' => $island->id]) }}">{{ $island->name }}</a>
                                 </td>
-                                <td>John Doe</td>
-                                <?php //TODO: getAllを書き換えるまでの仮置き
-                                ?>
-                                <td>{{ $island->cities->first()->name }}</td>
+                                <td>{{ $island->prefecture_name }}</td>
+                                <td>{{ $island->city_name }}</td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

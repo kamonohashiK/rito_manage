@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Island extends Model
 {
@@ -21,13 +22,21 @@ class Island extends Model
     }
 
     /**
-     * 全件取得する
+     * Indexページ用のデータを全件取得する
      *
-     * @return \Illuminate\Database\Eloquent\Collection<Island>
+     * @return array
      */
-    public static function getAll()
+    public static function getAllForIndex()
     {
-        return self::all();
+        //TODO: これをクエリビルダで書き直す
+        $islands = DB::select("
+            select distinct on (islands.id) islands.id, islands.name, prefectures.name as prefecture_name, cities.name as city_name from islands
+            join city_islands on islands.id = city_islands.island_id
+            join cities on city_islands.city_id = cities.id
+            join prefectures on cities.prefecture_id = prefectures.id
+            order by islands.id");
+
+        return $islands;
     }
 
     /**

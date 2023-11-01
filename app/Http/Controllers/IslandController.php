@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Island;
 
 class IslandController extends Controller
@@ -14,7 +13,7 @@ class IslandController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $islands = Island::getAll();
+        $islands = Island::getAllForIndex();
         return view('island.index', compact('islands'));
     }
 

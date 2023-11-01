@@ -46,12 +46,14 @@ class IslandTest extends TestCase
     }
 
     /**
-     * 全件取得できるかテスト
+     * Indexページ用の全件取得メソッドをテスト
      * @return void
      */
-    public function test_get_all_records()
+    public function test_get_all_for_index()
     {
-        $this->assertEquals(100, Island::getAll()->count());
+        $this->assertEquals(100, count(Island::getAllForIndex()));
+
+        // TODO: 取得結果の検証
     }
 
     /**
