@@ -28,13 +28,14 @@ class Island extends Model
      */
     public static function getAllForIndex()
     {
-        //TODO: これをクエリビルダで書き直す
-        $islands = DB::select("
-            select distinct on (islands.id) islands.id, islands.name, prefectures.name as prefecture_name, cities.name as city_name from islands
-            join city_islands on islands.id = city_islands.island_id
-            join cities on city_islands.city_id = cities.id
-            join prefectures on cities.prefecture_id = prefectures.id
-            order by islands.id");
+        $islands = DB::table('islands')
+            ->select('islands.id', 'islands.name', 'prefectures.name as prefecture_name', 'cities.name as city_name')
+            ->distinct('islands.id')
+            ->join('city_islands', 'islands.id', '=', 'city_islands.island_id')
+            ->join('cities', 'city_islands.city_id', '=', 'cities.id')
+            ->join('prefectures', 'cities.prefecture_id', '=', 'prefectures.id')
+            ->orderBy('islands.id')
+            ->get();
 
         return $islands;
     }
