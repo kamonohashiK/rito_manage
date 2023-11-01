@@ -28,11 +28,24 @@ class IslandController extends Controller
     public function show(int $id): \Illuminate\View\View
     {
         $island = Island::find($id);
+        $city_name = $this->cityName($island->cities);
 
         if ($island !== null) {
-            return view('island.show', compact('island'));
+            return view('island.show', compact('island', 'city_name'));
         } else {
             abort(404);
+        }
+    }
+
+    /**
+     * 複数の市区町村名のうち、最初のもののみを返す
+     */
+    private function cityName($cities): string
+    {
+        if(count($cities) === 1) {
+            return $cities->first()->name;
+        } else {
+            return $cities->first()->name . ' 他';
         }
     }
 }
