@@ -53,7 +53,13 @@ class IslandTest extends TestCase
     {
         $this->assertEquals(100, count(Island::getAllForIndex()));
 
-        // TODO: 取得結果の検証
+        // 取得結果の検証
+        foreach(Island::getAllForIndex() as $index => $island) {
+            $this->assertEquals($this->islands[$index]->id, $island->id);
+            $this->assertEquals($this->islands[$index]->name, $island->name);
+            $this->assertEquals($this->prefecture->name, $island->prefecture_name);
+            $this->assertEquals($this->city->name, $island->city_name);
+        }
     }
 
     /**
