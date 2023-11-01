@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Island;
 
 class IslandController extends Controller
@@ -14,7 +13,9 @@ class IslandController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $islands = Island::getAll();
+        $ITEMS_PER_PAGE = 30;
+        $islands = Island::getAllForIndex()->paginate($ITEMS_PER_PAGE);
+
         return view('island.index', compact('islands'));
     }
 
@@ -27,6 +28,7 @@ class IslandController extends Controller
     public function show(int $id): \Illuminate\View\View
     {
         $island = Island::find($id);
+
         if ($island !== null) {
             return view('island.show', compact('island'));
         } else {

@@ -4,35 +4,81 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Prefecture;
+use App\Models\City;
 use App\Models\Island;
+use Illuminate\Support\Facades\DB;
 
 class IslandTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $prefecture;
+    protected $city;
+    protected $other_city;
+    protected $islands;
+
     protected function setUp(): void
     {
         parent::setUp();
-        // factoryから100件のダミーデータを作成
-        for ($i = 0; $i < 100; $i++) {
-            Island::factory()->create();
+        $this->prefecture = Prefecture::factory()->create();
+        $this->city = City::factory()->for($this->prefecture)->create();
+        $this->other_city = City::factory()->for($this->prefecture)->create();
+
+        $this->islands = Island::factory(100)->create();
+
+        foreach ($this->islands as $island) {
+            DB::table('city_islands')->insert([
+                'city_id' => $this->city->id,
+                'island_id' => $island->id,
+            ]);
         }
     }
 
     /**
      * IDからレコードを取得できるかテスト
+     * @return void
      */
-    public function test_get_record_by_id()
+    public function test_get_record_by_id(): void
     {
         $island = Island::factory()->create();
         $this->assertEquals($island->id, Island::getById($island->id)->id);
     }
 
     /**
-     * 全件取得できるかテスト
+     * Indexページ用の全件取得メソッドをテスト
+     * @return void
      */
-    public function test_get_all_records()
+    public function test_get_all_for_index(): void
     {
-        $this->assertEquals(100, Island::getAll()->count());
+        $this->assertEquals(100, Island::getAllForIndex()->count());
+
+        // TODO: ここで、島の名前、都道府県名、市区町村名が取得できているかテストしたい
+    }
+
+    /**
+     * 島が属する市区町村を取得できるかテスト
+     * @return void
+     */
+    public function test_cities(): void
+    {
+        // 1個の市区町村にしか属さない場合
+        $island = $this->islands->first();
+        $cities = $island->cities;
+
+        $this->assertEquals(1, $cities->count());
+        $this->assertTrue($cities->pluck('name')->contains($this->city->name));
+
+        // 2個の市区町村に属する場合
+        $other_island = $this->islands->last();
+        DB::table('city_islands')->insert([
+            'city_id' => $this->other_city->id,
+            'island_id' => $other_island->id,
+        ]);
+        $cities = $other_island->cities;
+
+        $this->assertEquals(2, $cities->count());
+        $this->assertTrue($cities->pluck('name')->contains($this->city->name));
+        $this->assertTrue($cities->pluck('name')->contains($this->other_city->name));
     }
 }
