@@ -20,7 +20,7 @@
                     <th>都道府県</th>
                     <td>{{ $island->cities->first()->prefecture->name }}</td>
                     <th>市区町村</th>
-                    <td>{{ count($island->cities) === 1 ? $island->cities->first()->name : $island->cities->first()->name . ' 他' }}
+                    <td>{{ $city_name }}
                     </td>
                 </tr>
                 <tr>

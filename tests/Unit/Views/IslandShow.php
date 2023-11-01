@@ -42,7 +42,8 @@ class IslandShow extends TestCase
         $response = $this->actingAs($this->user)->get("/island/{$this->island->id}");
 
         $response->assertStatus(200);
-        $response->assertViewHas('island');
+        $response->assertViewHas('island')
+            ->assertViewHas('city_name');
         $response->assertSee($this->island->name, false)
             ->assertSee("<th>ID</th>", false)
             ->assertSee($this->island->id, false)
