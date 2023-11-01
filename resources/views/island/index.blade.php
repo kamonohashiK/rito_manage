@@ -48,4 +48,10 @@
             </div>
         </div>
     </div>
+
+    @if ($islands->hasPages())
+        <div class="card-footer clearfix">
+            {{ $islands->links() }}
+        </div>
+    @endif
 @stop
