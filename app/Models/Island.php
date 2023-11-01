@@ -24,7 +24,7 @@ class Island extends Model
     /**
      * Indexページ用のデータを全件取得する
      *
-     * @return array
+     * @return \Illuminate\Database\Query\Builder
      */
     public static function getAllForIndex()
     {
@@ -34,8 +34,7 @@ class Island extends Model
             ->join('city_islands', 'islands.id', '=', 'city_islands.island_id')
             ->join('cities', 'city_islands.city_id', '=', 'cities.id')
             ->join('prefectures', 'cities.prefecture_id', '=', 'prefectures.id')
-            ->orderBy('islands.id')
-            ->get();
+            ->orderBy('islands.id');
 
         return $islands;
     }

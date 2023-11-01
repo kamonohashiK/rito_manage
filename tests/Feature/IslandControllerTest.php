@@ -46,6 +46,10 @@ class IslandControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('island.index');
         $response->assertViewHas('islands');
+
+        // ページネーションの検証
+        $viewData = $response->original->getData();
+        $this->assertCount(30, $viewData['islands']);
     }
 
     /**

@@ -13,7 +13,7 @@ class IslandController extends Controller
      */
     public function index(): \Illuminate\View\View
     {
-        $islands = Island::getAllForIndex();
+        $islands = Island::getAllForIndex()->paginate(30);
         return view('island.index', compact('islands'));
     }
 
