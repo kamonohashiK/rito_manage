@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\City>
+ * CityFactory
  */
 class CityFactory extends Factory
 {
@@ -16,11 +16,14 @@ class CityFactory extends Factory
      */
     public function definition(): array
     {
+        $cityName = $this->faker->city;
         return [
-            'name' => $this->faker->city,
-            'en_name' => $this->faker->city,
-            'code' => $this->faker->city,
-            'prefecture_id' => $this->faker->numberBetween(1, 47),
+            'name' => $cityName,
+            'en_name' => $cityName,
+            'code' => strtoupper(substr($cityName, 0, 3)),
+            'prefecture_id' => function () {
+                return \App\Models\Prefecture::factory()->create()->id;
+            },
         ];
     }
 }

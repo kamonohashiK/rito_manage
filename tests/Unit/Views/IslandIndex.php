@@ -43,6 +43,7 @@ class IslandIndex extends TestCase
         $response = $this->actingAs($this->user)->get('/');
 
         $response->assertStatus(200);
+        $response->assertViewHas('islands');
         $response
             ->assertSee('島一覧')
             ->assertSee('<th>島名</th>', false)
