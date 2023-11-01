@@ -27,12 +27,17 @@ class IslandController extends Controller
      */
     public function show(int $id): \Illuminate\View\View
     {
-        $island = Island::find($id);
-        $city_name = $this->cityName($island->cities);
+        try {
+            $island = Island::find($id);
+            $city_name = $this->cityName($island->cities);
 
-        if ($island !== null) {
-            return view('island.show', compact('island', 'city_name'));
-        } else {
+            if ($island !== null) {
+                return view('island.show', compact('island', 'city_name'));
+            } else {
+                abort(404);
+            }
+        } catch (\Exception $e) {
+            // NOTE: $islandが存在しない場合、cities呼び出し時にエラーになるため一律404とする
             abort(404);
         }
     }
