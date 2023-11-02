@@ -6,6 +6,35 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * App\Models\Island
+ *
+ * @property int $id
+ * @property string $firestore_id Firestoreで使用するID
+ * @property string $name 島の名前
+ * @property string $kana 島の名前のふりがな
+ * @property string $en_name 島の名前の英語表記
+ * @property string $lat 島の緯度
+ * @property string $lng 島の経度
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\City> $cities
+ * @property-read int|null $cities_count
+ * @method static \Database\Factories\IslandFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Island newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Island newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Island query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereEnName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereFirestoreId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereKana($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereLat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereLng($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Island whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Island extends Model
 {
     use HasFactory;
