@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('name', 10)->comment('市区町村名');
             $table->string('en_name', 40)->comment('市区町村名の英語表記');
             $table->string('code', 20)->comment('市区町村コード');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 

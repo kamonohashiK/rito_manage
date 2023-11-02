@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('en_name', 40)->comment('島の名前の英語表記');
             $table->decimal('lat', 8, 6)->comment('島の緯度');
             $table->decimal('lng', 9, 6)->comment('島の経度');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 
