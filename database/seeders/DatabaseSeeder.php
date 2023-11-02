@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             // テスト用ユーザー作成
-            UsersTableSeeder::class,
+            // UsersTableSeeder::class,
             // 初期データ作成
-            PrefecturesTableSeeder::class,
-            CitiesTableSeeder::class,
-            IslandsTableSeeder::class,
-            CityIslandsTableSeeder::class,
+            // PrefecturesTableSeeder::class,
+            // CitiesTableSeeder::class,
+            // IslandsTableSeeder::class,
+            // CityIslandsTableSeeder::class,
         ]);
     }
 }
