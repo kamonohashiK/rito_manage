@@ -9,6 +9,7 @@ on:
     types: [opened]
     branches-ignore:
       - main
+      - develop
   pull_request_review_comment:
     types: [created]
   issue_comment:
