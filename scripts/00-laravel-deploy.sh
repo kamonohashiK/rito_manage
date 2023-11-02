@@ -9,8 +9,9 @@ php artisan config:cache
 echo 'Caching routes...'
 php artisan route:cache
 
+# デプロイ時に既存のデータをリセット&マイグレーション TODO: #12が解決したら削除
 echo 'Running migrations...'
-php artisan migrate --force
+php artisan migrate:fresh --force
 
 echo 'Running seeders...'
 php artisan db:seed --force
