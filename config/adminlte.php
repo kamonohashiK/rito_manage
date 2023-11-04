@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'リトグラフ管理システム',
+    'title' => env('APP_NAME', 'リトグラフ管理アプリ'),
     'title_prefix' => '',
     'title_postfix' => '',
 

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'リトグラフ管理アプリ | 島一覧')
 
 @section('content_header')
     <h1>島一覧</h1>

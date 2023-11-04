@@ -43,9 +43,11 @@ class IslandControllerTest extends TestCase
     {
         $response = $this->actingAs($this->user)->get('/');
 
-        $response->assertStatus(200);
-        $response->assertViewIs('island.index');
-        $response->assertViewHas('islands');
+        $response
+            ->assertStatus(200)
+            ->assertSee('リトグラフ管理アプリ | 島一覧')
+            ->assertViewIs('island.index')
+            ->assertViewHas('islands');
 
         // ページネーションの検証
         $viewData = $response->original->getData();
@@ -60,9 +62,10 @@ class IslandControllerTest extends TestCase
     {
         $response = $this->actingAs($this->user)->get('/islands');
 
-        $response->assertStatus(200);
-        $response->assertViewIs('island.index');
-        $response->assertViewHas('islands');
+        $response->assertStatus(200)
+            ->assertSee('リトグラフ管理アプリ | 島一覧')
+            ->assertViewIs('island.index')
+            ->assertViewHas('islands');
 
         // ページネーションの検証
         $viewData = $response->original->getData();
@@ -91,9 +94,10 @@ class IslandControllerTest extends TestCase
 
         $response = $this->actingAs($this->user)->get("/islands/{$island->id}");
 
-        $response->assertStatus(200);
-        $response->assertViewIs('island.show');
-        $response->assertViewHas('island');
+        $response->assertStatus(200)
+            ->assertSee("リトグラフ管理アプリ | {$island->name}")
+            ->assertViewIs('island.show')
+            ->assertViewHas('island');
     }
 
     /**
