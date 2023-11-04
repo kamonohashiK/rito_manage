@@ -22,11 +22,9 @@ class NavigationTest extends TestCase
         $response = $this->actingAs($user)
             ->get('/');
 
-        // レスポンスが成功したことを確認
-        $response->assertStatus(200);
-
         // ナビゲーションリンクが表示されていることを確認
         $response
+            ->assertStatus(200)
             ->assertSee($user->name)
             ->assertSee('Log Out')
             ->assertSeeInOrder([
@@ -34,6 +32,6 @@ class NavigationTest extends TestCase
                 '島一覧',
                 'アカウント設定',
                 'プロフィール設定',
-            ], false);
+            ]);
     }
 }
