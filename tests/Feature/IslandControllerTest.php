@@ -43,9 +43,29 @@ class IslandControllerTest extends TestCase
     {
         $response = $this->actingAs($this->user)->get('/');
 
-        $response->assertStatus(200);
-        $response->assertViewIs('island.index');
-        $response->assertViewHas('islands');
+        $response
+            ->assertStatus(200)
+            ->assertSee('リトグラフ管理アプリ | 島一覧')
+            ->assertViewIs('island.index')
+            ->assertViewHas('islands');
+
+        // ページネーションの検証
+        $viewData = $response->original->getData();
+        $this->assertCount(30, $viewData['islands']);
+    }
+
+    /**
+     * /islandsから島の一覧画面が表示されるかテスト
+     * @return void
+     */
+    public function test_islands_page(): void
+    {
+        $response = $this->actingAs($this->user)->get('/islands');
+
+        $response->assertStatus(200)
+            ->assertSee('リトグラフ管理アプリ | 島一覧')
+            ->assertViewIs('island.index')
+            ->assertViewHas('islands');
 
         // ページネーションの検証
         $viewData = $response->original->getData();
@@ -72,11 +92,12 @@ class IslandControllerTest extends TestCase
     {
         $island = $this->islands->first();
 
-        $response = $this->actingAs($this->user)->get("/island/{$island->id}");
+        $response = $this->actingAs($this->user)->get("/islands/{$island->id}");
 
-        $response->assertStatus(200);
-        $response->assertViewIs('island.show');
-        $response->assertViewHas('island');
+        $response->assertStatus(200)
+            ->assertSee("リトグラフ管理アプリ | {$island->name}")
+            ->assertViewIs('island.show')
+            ->assertViewHas('island');
     }
 
     /**
@@ -85,7 +106,7 @@ class IslandControllerTest extends TestCase
      */
     public function test_show_404_when_island_not_found(): void
     {
-        $response = $this->actingAs($this->user)->get("/island/101");
+        $response = $this->actingAs($this->user)->get("/islands/101");
 
         $response->assertStatus(404);
     }
@@ -98,7 +119,7 @@ class IslandControllerTest extends TestCase
     {
         $island = $this->islands->first();
 
-        $response = $this->get("/island/{$island->id}");
+        $response = $this->get("/islands/{$island->id}");
 
         $response->assertStatus(302);
         $response->assertRedirect('/login');
