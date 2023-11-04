@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', "リトグラフ管理アプリ | {$island->name}")
 
 @section('content_header')
     <h1>{{ $island->name }}</h1>
