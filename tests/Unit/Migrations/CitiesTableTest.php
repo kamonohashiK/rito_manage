@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Migrations;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
@@ -19,8 +19,8 @@ class CitiesTableTest extends TestCase
     }
 
     /**
-    * 必要なカラムが存在するかどうか
-    */
+     * 必要なカラムが存在するかどうか
+     */
     public function test_has_necessary_columns(): void
     {
         $this->assertTrue(Schema::hasColumns('cities', [
@@ -35,8 +35,8 @@ class CitiesTableTest extends TestCase
     }
 
     /**
-    * prefecture_idはprefecturesテーブルのidを参照しているか
-    */
+     * prefecture_idはprefecturesテーブルのidを参照しているか
+     */
     public function test_prefecture_id_foreign(): void
     {
         $this->assertTrue(Schema::enableForeignKeyConstraints('prefecture_id'));
