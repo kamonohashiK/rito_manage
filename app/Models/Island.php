@@ -75,4 +75,12 @@ class Island extends Model
     {
         return $this->belongsToMany(City::class, 'city_islands');
     }
+
+    /**
+     * 自身に紐づくQuestionを取得する
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }
