@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class AnswersTableSampleSeeder extends Seeder
 {
@@ -20,9 +21,9 @@ class AnswersTableSampleSeeder extends Seeder
                 'liked_count' => 1,
                 'disliked_count' => 0,
                 'posted_user_id' => 'hogehoge',
-                'posted_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'posted_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'question_id' => 2,
@@ -31,9 +32,9 @@ class AnswersTableSampleSeeder extends Seeder
                 'liked_count' => 1,
                 'disliked_count' => 0,
                 'posted_user_id' => 'fugafuga',
-                'posted_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'posted_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'question_id' => 2,
@@ -42,9 +43,9 @@ class AnswersTableSampleSeeder extends Seeder
                 'liked_count' => 0,
                 'disliked_count' => 0,
                 'posted_user_id' => 'piyopiyo',
-                'posted_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+                'posted_at' => Carbon::now(),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
         ]);
     }

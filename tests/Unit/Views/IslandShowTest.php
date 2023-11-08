@@ -115,6 +115,7 @@ class IslandShowTest extends TestCase
 
         $response = $this->actingAs($this->user)->get("/islands/{$this->island->id}");
         $response->assertSee("質問", false)
+            ->assertSee($question->question, false)
             ->assertSee($answers[0]->answer, false)
             ->assertSee($answers[1]->answer, false)
             ->assertSee($answers[2]->answer, false);
