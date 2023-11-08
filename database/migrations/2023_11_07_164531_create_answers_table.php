@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('question_answers', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('island_questions');
+            $table->foreignId('question_id')->constrained('questions');
             $table->string('firestore_id', 100)->comment('Firestore ID')->index();
             $table->string('answer', 800)->comment('回答文');
             $table->integer('liked_count')->comment('高評価数');
@@ -30,9 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('question_answers', function (Blueprint $table) {
+        Schema::table('answers', function (Blueprint $table) {
             $table->dropForeign(['question_id']);
         });
-        Schema::dropIfExists('question_answers');
+        Schema::dropIfExists('answers');
     }
 };
