@@ -91,10 +91,10 @@ class IslandTest extends TestCase
         $island = $this->islands->first();
         $questions = Question::factory()->count(3)->create(['island_id' => $island->id]);
 
-        // IslandがResortを複数持っていることを確認
+        // IslandがQuestionを複数持っていることを確認
         $this->assertEquals(3, $island->questions->count());
 
-        // 各Resortが正しいIslandに属していることを確認
+        // Questionsの中身が正しいか確認
         foreach ($questions as $question) {
             $this->assertTrue($island->questions->contains($question));
         }
