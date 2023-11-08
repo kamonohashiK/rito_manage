@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('questions');
+            $table->foreignId('question_id')->constrained('questions')->comment('質問ID');
             $table->string('firestore_id', 100)->comment('Firestore ID')->index();
             $table->string('answer', 800)->comment('回答文');
             $table->integer('liked_count')->comment('高評価数');

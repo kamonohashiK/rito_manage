@@ -17,17 +17,13 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'island_id' =>
-            function () {
-                return \App\Models\Island::factory()->create()->id;
-            },
-            'firestore_id' => $this->faker->unique()->regexify('[a-zA-Z0-9]{40}'),
+            'island_id' => \App\Models\Island::factory(),
+            'firestore_id' => $this->faker->unique()->word(),
             'question' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'answer_count' => $this->faker->numberBetween($min = 0, $max = 4),
             'is_default' => $this->faker->boolean(),
             'posted_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
-            'posted_user_id' =>
-            $this->faker->unique()->regexify('[a-zA-Z0-9]{40}'),
+            'posted_user_id' => $this->faker->unique()->word(),
         ];
     }
 }

@@ -17,17 +17,13 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            'question_id' =>
-            function () {
-                return \App\Models\Question::factory()->create()->id;
-            },
-            'firestore_id' => $this->faker->unique()->regexify('[a-zA-Z0-9]{40}'),
+            'question_id' => \App\Models\Question::factory(),
+            'firestore_id' => $this->faker->unique()->word(),
             'answer' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'liked_count' => $this->faker->numberBetween($min = 0, $max = 100),
             'disliked_count' => $this->faker->numberBetween($min = 0, $max = 100),
             'posted_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
-            'posted_user_id' =>
-            $this->faker->unique()->regexify('[a-zA-Z0-9]{40}'),
+            'posted_user_id' => $this->faker->unique()->word(),
         ];
     }
 }
