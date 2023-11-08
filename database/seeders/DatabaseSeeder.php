@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             CitiesTableSeeder::class,
             IslandsTableSeeder::class,
             CityIslandsTableSeeder::class,
+            // サンプルデータ作成 ※本番環境では実行しない
+            QuestionsTableSampleSeeder::class,
+            AnswersTableSampleSeeder::class,
         ]);
     }
 }
