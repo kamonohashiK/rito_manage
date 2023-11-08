@@ -6,16 +6,16 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class QuestionAnswersTable extends TestCase
+class AnswersTableTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
-     * question_answersテーブルが存在するかどうか
+     * answersテーブルが存在するかどうか
      */
-    public function test_exists_question_answers_table(): void
+    public function test_exists_answers_table(): void
     {
-        $this->assertTrue(Schema::hasTable('question_answers'));
+        $this->assertTrue(Schema::hasTable('answers'));
     }
 
     /**
@@ -24,7 +24,7 @@ class QuestionAnswersTable extends TestCase
     public function test_has_necessary_columns()
     {
         $this->assertTrue(Schema::hasColumns(
-            'question_answers',
+            'answers',
             [
                 'id',
                 'question_id',
@@ -41,7 +41,7 @@ class QuestionAnswersTable extends TestCase
     }
 
     /**
-     * question_idはisland_questionsテーブルのidを参照しているか
+     * question_idはquestionsテーブルのidを参照しているか
      */
     public function test_question_id_foreign(): void
     {

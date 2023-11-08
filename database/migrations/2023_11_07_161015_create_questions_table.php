@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('question_answers', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('island_questions');
+            $table->foreignId('island_id')->constrained('islands');
             $table->string('firestore_id', 100)->comment('Firestore ID')->index();
-            $table->string('answer', 800)->comment('回答文');
-            $table->integer('liked_count')->comment('高評価数');
-            $table->integer('disliked_count')->comment('低評価数');
-            $table->string('posted_user_id', 100)->comment('投稿者のFirestore ID');
+            $table->string('question', 100)->comment('質問文');
+            $table->integer('answer_count')->comment('回答数');
+            $table->boolean('is_default')->comment('デフォルト質問かどうか');
             $table->timestamp('posted_at')->comment('投稿日時');
+            $table->string('posted_user_id', 100)->comment('投稿者のFirestore ID');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
@@ -30,9 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('question_answers', function (Blueprint $table) {
-            $table->dropForeign(['question_id']);
+        Schema::table('questions', function (Blueprint $table) {
+            $table->dropForeign(['island_id']);
         });
-        Schema::dropIfExists('question_answers');
+        Schema::dropIfExists('questions');
     }
 };

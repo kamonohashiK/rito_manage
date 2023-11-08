@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Prefecture;
 use App\Models\City;
 use App\Models\Island;
+use App\Models\Question;
 use Illuminate\Support\Facades\DB;
 
 class IslandTest extends TestCase
@@ -80,5 +81,22 @@ class IslandTest extends TestCase
         $this->assertEquals(2, $cities->count());
         $this->assertTrue($cities->pluck('name')->contains($this->city->name));
         $this->assertTrue($cities->pluck('name')->contains($this->other_city->name));
+    }
+
+    /**
+     * 島に対する質問を取得できるかテスト
+     */
+    public function test_questions()
+    {
+        $island = $this->islands->first();
+        $questions = Question::factory()->count(3)->create(['island_id' => $island->id]);
+
+        // IslandがQuestionを複数持っていることを確認
+        $this->assertEquals(3, $island->questions->count());
+
+        // Questionsの中身が正しいか確認
+        foreach ($questions as $question) {
+            $this->assertTrue($island->questions->contains($question));
+        }
     }
 }

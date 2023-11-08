@@ -11,11 +11,11 @@ class IslandQuestionsTableTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * island_questionsテーブルが存在するかどうか
+     * questionsテーブルが存在するかどうか
      */
-    public function test_exists_island_questions_table(): void
+    public function test_exists_questions_table(): void
     {
-        $this->assertTrue(Schema::hasTable('island_questions'));
+        $this->assertTrue(Schema::hasTable('questions'));
     }
 
     /**
@@ -23,7 +23,7 @@ class IslandQuestionsTableTest extends TestCase
      */
     public function test_has_necessary_columns()
     {
-        $this->assertTrue(Schema::hasColumns('island_questions', [
+        $this->assertTrue(Schema::hasColumns('questions', [
             'id',
             'island_id',
             'firestore_id',

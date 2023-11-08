@@ -21,9 +21,7 @@ class CityFactory extends Factory
             'name' => $cityName,
             'en_name' => $cityName,
             'code' => strtoupper(substr($cityName, 0, 3)),
-            'prefecture_id' => function () {
-                return \App\Models\Prefecture::factory()->create()->id;
-            },
+            'prefecture_id' => \App\Models\Prefecture::factory(),
         ];
     }
 }

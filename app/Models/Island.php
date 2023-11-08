@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\DB;
  * @method static \Illuminate\Database\Eloquent\Builder|Island whereLng($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Island whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Island whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Question> $questions
+ * @property-read int|null $questions_count
  * @mixin \Eloquent
  */
 class Island extends Model
@@ -74,5 +76,13 @@ class Island extends Model
     public function cities()
     {
         return $this->belongsToMany(City::class, 'city_islands');
+    }
+
+    /**
+     * 自身に紐づくQuestionを取得する
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }

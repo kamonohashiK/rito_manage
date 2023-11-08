@@ -17,7 +17,7 @@ class IslandFactory extends Factory
     public function definition(): array
     {
         return [
-            'firestore_id' => $this->faker->unique()->regexify('[a-zA-Z0-9]{40}'),
+            'firestore_id' => $this->faker->unique()->word(),
             'name' => $this->faker->firstName($maxNbChars = 10),
             'kana' => $this->faker->firstName($maxNbChars = 10),
             'en_name' => $this->faker->title($maxNbChars = 20),
