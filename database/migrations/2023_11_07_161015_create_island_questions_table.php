@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('answer_count')->comment('回答数');
             $table->boolean('is_default')->comment('デフォルト質問かどうか');
             $table->timestamp('posted_at')->comment('投稿日時');
-            $table->foreignId('posted_user_id')->comment('投稿者のFirestore ID');
+            $table->string('posted_user_id', 100)->comment('投稿者のFirestore ID');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
