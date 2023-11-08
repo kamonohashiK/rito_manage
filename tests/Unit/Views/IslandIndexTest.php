@@ -9,7 +9,8 @@ use App\Models\Island;
 use App\Models\Prefecture;
 use App\Models\City;
 use Illuminate\Support\Facades\DB;
-class IslandIndex extends TestCase
+
+class IslandIndexTest extends TestCase
 {
     use RefreshDatabase;
 

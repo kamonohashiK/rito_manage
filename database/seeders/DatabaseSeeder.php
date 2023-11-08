@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\Prefecture;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +19,9 @@ class DatabaseSeeder extends Seeder
             CitiesTableSeeder::class,
             IslandsTableSeeder::class,
             CityIslandsTableSeeder::class,
+            // サンプルデータ作成 ※本番環境では実行しない
+            //QuestionsTableSampleSeeder::class,
+            //AnswersTableSampleSeeder::class,
         ]);
     }
 }

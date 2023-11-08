@@ -38,4 +38,40 @@
             </tbody>
         </table>
     </div>
+
+    <h5 class="mb-2">質問</h5>
+    <? @if ($island->questions->count() > 0)
+                                                                    : ?>
+    <div class="card">
+        <? @foreach ($island->questions as $question)
+    : ?>
+        <div class="card-header">
+            <h3 class="card-title">{{ $question->question }}</h3>
+            <div class="card-tools">
+                <a>編集リンク</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <? @if ($question->answers->count() > 0)
+    : ?>
+            <? @foreach ($question->answers as $answer)
+    : ?>
+            {{ $answer->answer }}
+            <br>
+            <a><i class="fas fa-edit"></i>編集リンク</a>
+            <hr>
+
+            <?
+    @endforeach; ?>
+            <? @else: ?>
+            <p>この質問に対する回答はありません。</p>
+            <?
+    @endif; ?>
+        </div>
+        <?
+    @endforeach; ?>
+    </div>
+    <? @else: ?>
+    <p>この島に関する質問はありません。</p>
+    <? @endif; ?>
 @stop
