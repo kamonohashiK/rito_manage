@@ -30,6 +30,11 @@ class SampleLogger extends Command
      */
     protected $slackService;
 
+    /**
+     * コンストラクタ
+     *
+     * @param SlackService $slackService
+     */
     public function __construct(SlackService $slackService)
     {
         parent::__construct();
@@ -38,7 +43,8 @@ class SampleLogger extends Command
     }
 
     /**
-     * Execute the console command.
+     * Sample Loggerメソッドの実行
+     * @return void
      */
     public function handle()
     {

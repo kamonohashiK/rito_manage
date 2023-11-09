@@ -15,9 +15,9 @@ class SlackService
      * @param array $fields
      * @return void
      */
-    public function sendNotification($title, $succeed, $message, $fields)
+    public function sendNotification(string $title, bool $succeed, string $message, array $fields)
     {
-        Notification::route('slack', env('SLACK_WEBHOOK_URL'))
+        Notification::route('slack', config('slack.webhook_url'))
             ->notify(new SlackNotification($title, $succeed, $message, $fields));
     }
 }

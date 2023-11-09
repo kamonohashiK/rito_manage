@@ -12,6 +12,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        /**
+         * 毎分ごとにログとSlack通知を出力する(サンプル)
+         */
         $schedule->command('app:sample-logger')->everyMinute();
     }
 

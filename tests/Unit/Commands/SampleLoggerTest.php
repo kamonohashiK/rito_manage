@@ -32,7 +32,7 @@ class SampleLoggerTest extends TestCase
             new AnonymousNotifiable,
             SlackNotification::class,
             function ($notification, $channels, $notifiable) {
-                return $notifiable->routes['slack'] === env('SLACK_WEBHOOK_URL') &&
+                return $notifiable->routes['slack'] === config('slack.webhook_url') &&
                     $notification->title === "Slackテスト" &&
                     $notification->succeed === true &&
                     $notification->message === "通知を飛ばすテスト" &&
