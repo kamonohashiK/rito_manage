@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\SlackNotification;
 
 class SampleLogger extends Command
 {
@@ -26,5 +28,8 @@ class SampleLogger extends Command
     public function handle()
     {
         logger()->info('Sample logger');
+
+        Notification::route('slack', env('SLACK_WEBHOOK_URL'))
+            ->notify(new SlackNotification("Slackテスト", true, "通知を飛ばすテスト", ['テスト' => 'テスト', 'テスト2' => 'テスト2']));
     }
 }
